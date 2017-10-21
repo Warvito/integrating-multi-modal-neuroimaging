@@ -74,7 +74,7 @@ def main(config_module, N_SEED):
                 dataset.append(img_vec)
 
         dataset = np.asarray(dataset)
-        print("DATA SHAPE")
+        print("DATASET   SHAPE")
         print(dataset.shape)
 
         skf = StratifiedKFold(n_splits=cv_n_folds, shuffle=True, random_state=N_SEED)
