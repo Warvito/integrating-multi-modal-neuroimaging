@@ -21,6 +21,4 @@ n_permutations = 100
 data_dirs = ["./data/IMG/"]
 type_data = ["3D"] #use "MATRIX" or "3D"
 
-# ---------------------ONLY USED ON nifti_2_csv ----------------------------
 
-mask_roi_file = ["./masks_roi/aal_MNI_V4.img"]

@@ -5,44 +5,32 @@ import nibabel as nib
 import numpy as np
 
 
+# ---------------------------------------------------------------------------------
+# CHANGE HERE
+# ---------------------------------------------------------------------------------
+
+mask_file = "./masks/aal_MNI_V4.img"
+features_file = './results/2_single_COBRE/single/SVM_LEARNED_FEATURES0.nii'
+csv_save_file = './results/2_single_COBRE/single/SVM_LEARNED_FEATURES0.csv'
+
+# ---------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------
 
 
-def main(config_module):
-    type_data = config_module.type_data
-    mask_data = config_module.mask_roi_file
-
-    experiment_name = config_module.experiment_name
-
-    for m in range(len(type_data)):
-        print(m)
-        print(type_data[m])
-        if type_data[m] == "3D":
-            print("MASK ROI " + mask_data[m])
-            MASK = nib.load(mask_data[m])
-            img_mask = MASK.get_data()
-            img_dims = img_mask.shape
-            img_mask = np.asarray(img_mask, dtype='int')
-            print(np.min(img_mask))
-            print(img_dims)
-            sum = 0
-            for i in range(1, int(np.max(img_mask))):
-                sum = np.sum(img_mask[img_mask==1])
-            A = img_mask[img_mask==1]
-            print(A)
-            print(sum)
+print("MASK FILE " + mask_file)
+MASK = nib.load(mask_file)
+img_mask = MASK.get_data()
+img_mask = np.asarray(img_mask, dtype='int')
+print("MASK DIM " + str(img_mask.shape))
 
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Script to train model.')
-    parser.add_argument("config_name", type=str, help="The name of file .py with configurations, e.g., Combined")
-    args = parser.parse_args()
-    config_name = args.config_name
+FEATURES = nib.load(features_file)
+img_feat = FEATURES.get_data()
+img_feat = np.asarray(img_feat, dtype='float32')
+print("FEATURES DIM " + str(img_feat.shape))
 
-    try:
-        config_module = imp.load_source('config', config_name)
+discriminant_weight = np.zeros((np.max(img_mask)-1,1))
+for i in range(1, int(np.max(img_mask))):
+    discriminant_weight[i-1,0] = np.mean(img_feat[img_mask==i])
 
-    except IOError:
-        print('Cannot open ', config_name,
-              '. Please specify the correct path of the configuration file. Example: python general_AV_SVM.py ./config/config_test.py')
-
-    main(config_module)
+np.savetxt(csv_save_file, discriminant_weight)
