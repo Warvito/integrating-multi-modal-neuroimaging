@@ -54,7 +54,7 @@ def main(config_module, N_SEED):
             best_classifiers = permutation_classifiers[i]
             best_combination = permutation_AV_combination[i]
 
-            y_train, y_test = permuted_labels[train_index], permuted_labels[test_index]
+            y_train, y_test = permuted_labels[train_index], y[test_index]
             predictions_proba = []
             for j in range(len(kernels)):
                 precomputed_kernel = kernels[j]

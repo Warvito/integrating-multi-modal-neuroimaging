@@ -49,7 +49,7 @@ def main(config_module, N_SEED):
         for i, (train_index, test_index) in enumerate(skf.split(permuted_labels, permuted_labels)):
             best_svc = permutation_classifiers[i]
 
-            y_train, y_test = permuted_labels[train_index], permuted_labels[test_index]
+            y_train, y_test = permuted_labels[train_index], y[test_index]
             x_train, x_test = precomputed_kernel[train_index, :][:, train_index], precomputed_kernel[test_index, :][:,
                                                                                   train_index]
             best_svc.fit(x_train, y_train)
