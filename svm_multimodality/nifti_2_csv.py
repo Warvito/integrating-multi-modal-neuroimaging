@@ -29,8 +29,8 @@ img_feat = FEATURES.get_data()
 img_feat = np.asarray(img_feat, dtype='float32')
 print("FEATURES DIM " + str(img_feat.shape))
 
-discriminant_weight = np.zeros((np.max(img_mask)-1,1))
-for i in range(1, int(np.max(img_mask))):
+discriminant_weight = np.zeros((np.max(img_mask),1))
+for i in range(1, int(np.max(img_mask))+1):
     discriminant_weight[i-1,0] = np.mean(img_feat[img_mask==i])
 
 np.savetxt(csv_save_file, discriminant_weight)
