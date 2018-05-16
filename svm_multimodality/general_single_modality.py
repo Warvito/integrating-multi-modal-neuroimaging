@@ -1,15 +1,17 @@
+from __future__ import absolute_import
+from __future__ import division
 from __future__ import print_function
-import argparse
+
+import os
 import imp
 import random
-import numpy as np
-import os
 import pickle
+import argparse
+import numpy as np
 
 from sklearn.model_selection import StratifiedKFold, GridSearchCV
 from sklearn.svm import SVC
-from sklearn.metrics import make_scorer
-from sklearn.metrics import confusion_matrix
+from sklearn.metrics import make_scorer, confusion_matrix
 
 
 def balanced_accuracy_score(actual, prediction):

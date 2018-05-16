@@ -53,7 +53,7 @@ def main(config_module, N_SEED):
 
     grid_scorer = make_scorer(balanced_accuracy_score, greater_is_better=True)
 
-    train_index = groups==training_site
+    train_index = np.where(groups==training_site)[0]
 
     x_train = precomputed_kernel[train_index, :][:, train_index]
     y_train = y[train_index]
