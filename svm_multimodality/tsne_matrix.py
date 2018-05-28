@@ -78,7 +78,7 @@ for i in range(4):
         mask = np.squeeze(sites==site, axis=1)
         ax.scatter(X_embedded[mask, 0], X_embedded[mask, 1], color = colors[j,:])
 
-    perp = 5
+    perp = 3
     ax = subplots[0][1]
     ax.set_title('Perplexity ' + str(perp))
     tsne = manifold.TSNE(n_components=n_components,
@@ -93,7 +93,7 @@ for i in range(4):
         mask = np.squeeze(sites==site, axis=1)
         ax.scatter(X_embedded[mask, 0], X_embedded[mask, 1], color = colors[j,:])
 
-    perp = 20
+    perp = 4
     ax = subplots[0][2]
     ax.set_title('Perplexity ' + str(perp))
     tsne = manifold.TSNE(n_components=n_components,
@@ -108,7 +108,7 @@ for i in range(4):
         mask = np.squeeze(sites==site, axis=1)
         ax.scatter(X_embedded[mask, 0], X_embedded[mask, 1], color = colors[j,:])
 
-    perp = 30
+    perp = 6
     ax = subplots[1][0]
     ax.set_title('Perplexity ' + str(perp))
     tsne = manifold.TSNE(n_components=n_components,
@@ -123,7 +123,7 @@ for i in range(4):
         mask = np.squeeze(sites==site, axis=1)
         ax.scatter(X_embedded[mask, 0], X_embedded[mask, 1], color = colors[j,:])
 
-    perp = 50
+    perp = 7
     ax = subplots[1][1]
     ax.set_title('Perplexity ' + str(perp))
     tsne = manifold.TSNE(n_components=n_components,
@@ -138,7 +138,7 @@ for i in range(4):
         mask = np.squeeze(sites==site, axis=1)
         ax.scatter(X_embedded[mask, 0], X_embedded[mask, 1], color = colors[j,:])
 
-    perp = 70
+    perp = 8
     ax = subplots[1][2]
     ax.set_title('Perplexity ' + str(perp))
     tsne = manifold.TSNE(n_components=n_components,
@@ -153,7 +153,7 @@ for i in range(4):
         mask = np.squeeze(sites==site, axis=1)
         ax.scatter(X_embedded[mask, 0], X_embedded[mask, 1], color = colors[j,:])
 
-    perp = 100
+    perp = 9
     ax = subplots[2][0]
     ax.set_title('Perplexity ' + str(perp))
     tsne = manifold.TSNE(n_components=n_components,
@@ -168,7 +168,7 @@ for i in range(4):
         mask = np.squeeze(sites==site, axis=1)
         ax.scatter(X_embedded[mask, 0], X_embedded[mask, 1], color = colors[j,:])
 
-    perp = 150
+    perp = 10
     ax = subplots[2][1]
     ax.set_title('Perplexity ' + str(perp))
     tsne = manifold.TSNE(n_components=n_components,
@@ -183,7 +183,7 @@ for i in range(4):
         mask = np.squeeze(sites==site, axis=1)
         ax.scatter(X_embedded[mask, 0], X_embedded[mask, 1], color = colors[j,:])
 
-    perp = 200
+    perp = 11
     ax = subplots[2][2]
     ax.set_title('Perplexity ' + str(perp))
     tsne = manifold.TSNE(n_components=n_components,
