@@ -9,7 +9,8 @@ import numpy as np
 
 data_dir = "./data/SC3"
 labels_path = "./data/Labels.csv"
-kernel_file = './kernels/functional_matrix_kernel_dataset_1.npz'
+sites_path = "./data/sites3.csv"
+kernel_file = './kernels/functional_matrix_kernel.npz'
 input_data_type = ".txt"
 
 
@@ -30,9 +31,10 @@ def sort_nicely(l):
     return sorted(l, key=alphanum_key)
 
 def lower_tri_witout_diag(x):
-    return np.concatenate([ x[i][:i] for i in xrange(x.shape[0])])
+    return np.concatenate([ x[i][:i] for i in range(x.shape[0])])
 
 labels = np.genfromtxt(labels_path, dtype="int32")
+sites = np.genfromtxt(sites_path, dtype="int32")
 matrix_files = glob.glob(data_dir + "/*" + input_data_type)
 
 matrix_files = sort_nicely(matrix_files)
@@ -45,7 +47,7 @@ step_size = 30
 for i in range(int(np.ceil(n_samples / np.float(step_size)))):
     it = i + 1
     max_it = int(np.ceil(n_samples / np.float(step_size)))
-    print " outer loop iteration: %d of %d." % (it, max_it)
+    print(" outer loop iteration: %d of %d." % (it, max_it))
 
     # generate indices and then paths for this block
     start_ind_1 = i * step_size
@@ -66,7 +68,7 @@ for i in range(int(np.ceil(n_samples / np.float(step_size)))):
         it = j + 1
         max_it = i + 1
 
-        print " inner loop iteration: %d of %d." % (it, max_it)
+        print(" inner loop iteration: %d of %d." % (it, max_it))
 
         # if i = j, then sets of image data are the same - no need to load
         if i == j:
@@ -95,8 +97,8 @@ for i in range(int(np.ceil(n_samples / np.float(step_size)))):
         K[start_ind_1:stop_ind_1, start_ind_2:stop_ind_2] = block_K
         K[start_ind_2:stop_ind_2, start_ind_1:stop_ind_1] = np.transpose(block_K)
 
-print ""
-print "Saving Dataset"
-print "   Kernel+Labels:" + kernel_file
-np.savez(kernel_file, kernel=K, labels=labels)
-print "Done"
+print("")
+print("Saving Dataset")
+print("   Kernel+Labels:" + kernel_file)
+np.savez(kernel_file, kernel=K, labels=labels, sites=sites)
+print("Done")

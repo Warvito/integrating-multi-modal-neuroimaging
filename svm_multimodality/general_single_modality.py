@@ -36,6 +36,7 @@ def main(config_module, N_SEED):
     print("Loading data....")
     file_npz = np.load("./kernels/" + precomputed_kernel_files)
     y = file_npz['labels']
+    sites = file_npz['sites']
     precomputed_kernel = file_npz['kernel']
 
 
@@ -53,7 +54,7 @@ def main(config_module, N_SEED):
     cv_test_spec = np.zeros((cv_n_folds,))
     cv_error_rate = np.zeros((cv_n_folds,))
     i=0
-    for train_index, test_index in skf.split(y, y):
+    for train_index, test_index in skf.split(sites, sites):
         x_train, x_test = precomputed_kernel[train_index, :][:, train_index], precomputed_kernel[test_index, :][:, train_index]
         y_train, y_test = y[train_index], y[test_index]
 

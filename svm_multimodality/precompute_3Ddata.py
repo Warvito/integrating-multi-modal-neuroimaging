@@ -8,6 +8,7 @@ import nibabel as nib
 
 data_dir = './data/IMG/'
 labels_path = "./data/Labels.csv"
+sites_path = "./data/sites3.csv"
 kernel_file = './kernels/img.npz'
 input_data_type = ".nii"
 
@@ -18,6 +19,7 @@ input_data_type = ".nii"
 
 print "Reading labels from %s" % labels_path
 labels = np.genfromtxt(labels_path, delimiter=',', dtype='int8')
+sites = np.genfromtxt(sites_path, dtype='int8')
 print "   # of labels samples: %d " % len(labels)
 print "Reading images with format {} from: %s".format(input_data_type, data_dir)
 paths_train = glob.glob(data_dir + "/*" + input_data_type)
@@ -97,5 +99,5 @@ for i in range(int(np.ceil(n_samples / np.float(step_size)))):
 print ""
 print "Saving Dataset"
 print "   Kernel+Labels:" + kernel_file
-np.savez(kernel_file, kernel=K, labels=labels)
+np.savez(kernel_file, kernel=K, labels=labels, sites=sites)
 print "Done"

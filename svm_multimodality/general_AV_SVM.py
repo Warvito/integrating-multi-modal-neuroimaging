@@ -37,6 +37,7 @@ def main(config_module, N_SEED):
 
     file_npz = np.load("./kernels/" + precomputed_kernel_files[0])
     y = file_npz['labels']
+    sites = file_npz['sites']
 
     grid_scorer = make_scorer(balanced_accuracy_score, greater_is_better=True)
 
@@ -60,7 +61,7 @@ def main(config_module, N_SEED):
         kernels.append(file_npz['kernel'])
 
     print("Starting Stratified Cross Validation with ", cv_n_folds, " folds")
-    for i, (train_index, test_index) in enumerate(skf.split(y, y)):
+    for i, (train_index, test_index) in enumerate(skf.split(sites, sites)):
         start_time = time.time()
 
         print("")
