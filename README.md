@@ -1,6 +1,1 @@
-Hi Du,
-
-Just setting online the codes of our last study. Do not worry it is a private repository and the data will not be uploaded.
-
-Cheers,
-Walter
+# Integrating machining learning and multi-modal neuroimaging to detect schizophrenia at the level of the individual
