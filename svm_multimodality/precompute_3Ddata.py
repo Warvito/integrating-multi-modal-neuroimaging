@@ -58,6 +58,7 @@ for i in range(int(np.ceil(n_samples / np.float(step_size)))):
         img = nib.load(path)
         img = img.get_data()
         img = np.asarray(img, dtype='float64')
+        img = np.nan_to_num(img)
         img_vec = np.reshape(img, np.product(img.shape))
         images_1.append(img_vec)
         del img
@@ -87,6 +88,7 @@ for i in range(int(np.ceil(n_samples / np.float(step_size)))):
                 img = nib.load(path)
                 img = img.get_data()
                 img = np.asarray(img, dtype='float64')
+                img = np.nan_to_num(img)
                 img_vec = np.reshape(img, np.product(img.shape))
                 images_2.append(img_vec)
                 del img
